@@ -1,0 +1,265 @@
+@charset "UTF-8";
+/*
+O @charset serve para informar ao navegador qual codificação de caracteres o arquivo CSS usa.
+Isso garante que caracteres especiais, como acentos (á, é, ç), símbolos e emojis, sejam interpretados corretamente.
+
+O @charset DEVE estar na primeira linha do arquivo CSS, antes de qualquer outro conteúdo, incluindo espaços, comentários ou regras CSS.
+Ele é a primeira coisa a aparecer no arquivo.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap'); 
+/* 
+O @import no CSS é uma regra mais geral. Ele serve para importar qualquer arquivo CSS externo, e não apenas fontes. 
+
+A regra @import deve preceder (vir antes de) todos os outros tipos de regras, exceto a @charset.
+*/
+
+@font-face {
+    font-family: "Android";
+    src: url("../fontes/idroid.otf") format("opentype");
+    font-weight: normal;
+/*
+A regra @font-face permite que os autores especifiquem fontes personalizadas para exibir texto em suas páginas. Usando @font-face, os designers não precisam depender das poucas fontes que os usuários têm instaladas.
+
+@font-face pode ser definida antes ou depois de seletores, contanto que seja carregada antes do uso da fonte no navegador.
+*/
+}
+
+:root {
+    --COR0: #c5ebd6;
+    --COR1: #83e1ad;
+    --COR2: #3ddc84;
+    --COR3: #2fa866;
+    --COR4: #1a5c37;
+    --COR5: #063d1e;
+
+    --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
+    --fonte-destaque: "Bebas Neue", sans-serif;
+    --fonte-android: "Android", Arial;
+/*
+ Sobre :root:
+O seletor :root é uma pseudo-classe CSS que representa o elemento raiz do documento.
+Ela tem especificidade maior que o seletor html, garantindo que as variáveis definidas nela estejam acessíveis globalmente.
+
+ Sobre variáveis CSS (Custom Properties):
+Variáveis CSS são propriedades definidas pelo usuário que armazenam valores para reutilização.
+São definidas com dois hífens --nome e acessadas com a função var(--nome).
+Permitem criar temas, manter cores e fontes consistentes e facilitar manutenção.
+
+ Ordem de colocação:
+Normalmente, as variáveis CSS são definidas dentro do :root no início do arquivo CSS para garantir que estejam disponíveis em todo o CSS.
+Elas podem estar em qualquer lugar onde um seletor válido é permitido, mas o melhor é definir no :root para escopo global.
+As variáveis devem ser definidas antes de serem usadas, para que funcionem corretamente.
+*/
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+/*
+O seletor universal * em CSS seleciona todos os elementos HTML da página.
+Aplicar margin: 0; e padding: 0; a todos os elementos remove as margens e espaçamentos internos padrão que navegadores aplicam por padrão.
+Essa prática é chamada de reset CSS ou normalização de estilos, e tem como objetivo garantir que os elementos comecem de uma base consistente, sem variações entre navegadores.
+
+O * reset deve estar no início do CSS após as regras @charset, @import e @font-face, mas antes das regras que estilizam elementos específicos.
+*/
+}
+
+body {
+    background-color: var(--COR0);
+    font-family: var(--fonte-padrao);
+}
+
+a.externo::after {
+    content: '\00A0\1F517';
+}
+
+header {
+    background-image: linear-gradient(to bottom, var(--COR3), var(--COR5));
+    min-height: 150px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+header > h1 {
+    color: white;
+    font-family: var(--fonte-destaque);
+    font-size: 3em;
+    font-weight: normal;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.253);
+}
+
+header > p {
+    font-family: var(--fonte-padrao);
+    font-size: 1.2em;
+    color: white;
+    max-width: 600px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: auto; 
+    margin-bottom: 20px;
+/* 
+margin: auto;
+Serve para centralizar um elemento horizontalmente dentro do contêiner (pai). 
+
+O elemento deve ser bloco (ex: <div>, <p>, etc.).
+Precisa ter largura definida com width ou max-width.
+*/
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.322);
+}
+
+nav {
+    background-color: var(--COR5);
+    padding: 10px;
+    box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.192);
+
+}
+
+nav > a {
+    color: var(--COR1);
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition-duration: .5s; /* A propriedade transition-duration: .5s; no CSS define quanto tempo uma transição deve durar — neste caso, meio segundo (0,5 segundos). */
+}
+
+nav > a:hover {
+    background-color: var(--COR3);
+    color: var(--COR5);
+}
+
+main {
+    min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+main h1 {
+    color: var(--COR5);
+    font-family: var(--fonte-android);
+    font-weight: normal;
+    font-size: 1.8em;
+}
+
+main h2 {
+    font-family: var(--fonte-android);
+    color: var(--COR4);
+    font-size: 1.3em;
+    font-weight: normal;
+    background-image: linear-gradient(to right, var(--COR1), transparent);
+    text-indent: 8px;
+}
+
+main p {
+    margin: 15px 0px;
+    text-align: justify;
+    text-indent: 30px; /* A propriedade text-indent especifica o recuo da primeira linha de um elemento de nível de bloco (como <p>, <div>, etc.). */
+    font-size: 1em;
+    line-height: 2em; /* A propriedade line-height especifica a altura da caixa da linha. É usada para definir o espaçamento vertical entre linhas de texto. */
+}
+
+main strong {
+    color: var(--COR4);
+    font-weight: bold;
+}
+
+main a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--COR5);
+    background-color: var(--COR1);
+    padding: 2px 6px;
+}
+
+main a:hover {
+    text-decoration: underline;
+    color: var(--COR4);
+}
+
+main img {
+    width: 100%;
+}
+
+main img.pequena {
+    max-width: 350px;
+    display: block;
+    margin: auto;
+}
+
+div.video {
+    background-color: var(--COR5);
+    margin: 0px -20px 30px -20px;
+    padding: 20px;
+    padding-bottom: 58%;
+    position: relative;
+}
+
+div.video > iframe {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+}
+
+aside {
+    background-color: var(--COR1);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.281);
+}
+
+aside h3 {
+    background-color: var(--COR4);
+    color: white;
+    padding: 10px;
+    margin: -10px -10px 0px -10px; /* Quando a margem é negativa, ela puxa o elemento para fora, ou seja, faz o elemento se mover para mais perto (ou até sobrepor) de outros elementos. */
+    border-radius: 10px 10px 0px 0px;
+}
+
+aside > ul {
+    list-style-type:'\2714\00A0\00A0' ;
+/*  
+\2714 → Símbolo ✔ (check mark)
+
+\00A0 → Espaço não separável (non-breaking space), para dar espaçamento após o símbolo
+
+list-style-type especifica o tipo de marcador a ser usado para os itens da lista.
+Pode ser um nome de marcador predefinido (como disc, circle, decimal, lower-alpha), ou none para remover o marcador.
+
+Nem todos os navegadores vão aceitar list-style-type com strings Unicode como você usou(\2714\00A0\00A0).
+Esse uso pode funcionar em alguns navegadores modernos (como Chrome, Firefox), mas não é garantido nem padrão.
+Em navegadores mais antigos ou diferentes engines (Edge, Safari, navegadores móveis, etc.) pode não funcionar corretamente ou simplesmente ignorar.
+*/
+    list-style-position: inside; 
+/*  list-style-position especifica a posição da caixa do marcador (bullet, número, etc.) em relação ao bloco principal de cada item de lista. 
+*/
+    columns: 2;
+}
+
+footer {
+    background-color: var(--COR5);
+    color: white;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 5px;
+}
+
+footer a {
+    color: white0;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: var(--COR1);
+}
